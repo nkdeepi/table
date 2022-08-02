@@ -1,0 +1,40 @@
+body{
+    background-color: rgb(238, 221, 221);
+}
+.table{
+  
+   margin-left: 60px;
+  background-color: rgb(238, 221, 221);
+    border: 1px solid rgb(238, 221, 221) ;
+    padding: 0;
+   
+}
+.table th{
+    color:whitesmoke;
+    text-align: center;
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 15px;
+    padding: 20px;
+}
+.table td{
+    color: whitesmoke;
+    font-size: 13px;
+    font-weight:small;
+    text-align: center;
+    padding: 5px;
+    background-color:rgb(238, 221, 221) ;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    
+}
+.table tr{
+  
+}
+.buttons{
+
+
+}
+
+
+
