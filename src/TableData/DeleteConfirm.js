@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
-import { dataContext } from '../App'
+import React, { useContext,useEffect } from 'react'
+import { dataContext,tableHideContext } from '../App'
 import { useParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 const DeleteConfirm = () => {
+  const[tableHide,setTableHide]=useContext(tableHideContext)
     const[initialData,setInitialData]=useContext(dataContext)
     const {id}=useParams()
     console.log("id in deletepage",id)
@@ -14,7 +15,11 @@ const DeleteConfirm = () => {
   
     const confirmdeletedata=initialData.filter((data,index)=>index != del-1)
     setInitialData(confirmdeletedata)
+    setTableHide(true)
    }
+   useEffect(()=>{
+    setTableHide(false)
+  })
 
 
    

@@ -35,6 +35,26 @@ body{
 
 
 }
+/* css for form(add record) */
+.formContainer{
+    height: 500px;
+    width: 500px;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  
+    margin: 40px 40px;
+    border: 1px solid grey;
+}
+/* css for modal */
+.modalContainer{
+    height: 600px;
+    width: 600px;
+    /* border: 1px solid grey; */
+    margin: 40px 40px;
+}
 
 
 

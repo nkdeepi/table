@@ -27,21 +27,25 @@
 
 // export default DeleteData
 
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
-import { dataContext } from '../App'
+import { dataContext,tableHideContext } from '../App'
+import Form from "react-bootstrap/Form";
+import '../Table/table.css'
 
 
 
 
 
 const DeleteData = () => {
+  const[tableHide,setTableHide]=useContext(tableHideContext)
 
   const [initialData, setInitialData] = useContext(dataContext)
   const { id } = useParams()
+  const readnewdata=initialData[id-1]
   // console.log(id)
   // const deleteData = initialData.filter((item, index) => index != id - 1)
   // console.log(deleteData)
@@ -54,29 +58,72 @@ const DeleteData = () => {
 
 
   // console.log(deleteData)
+  useEffect(()=>{
+    setTableHide(false)
+  })
+  const  confirmDelete=(del)=>{
+    console.log(del)
+    
+  
+    const confirmdeletedata=initialData.filter((data,index)=>index != del-1)
+    setInitialData(confirmdeletedata)
+    setTableHide(true)
+    navigate('-1')
+    alert("data deleted successfully")
+   }
   const navigate = useNavigate()
   return (
     <div>
+      <h4 style={{fontsize:"10px",textAlign:"left",marginTop:"30px",color:"brown",marginLeft:"60px"}}>Delete Record </h4>
+      <div className='modalContainer'>
       <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Delete Data</Modal.Title>
-        </Modal.Header>
+       
 
         <Modal.Body>
-          <p>Do You Want to Delete Data</p>
+          <p style={{fontsize:"10px",textAlign:"center",marginTop:"30px",color:"brown",fontWeight:"bolder"}}>Do You Want to Delete This Record </p>
+          <Form className='formContainer'>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Id</Form.Label>
+          <Form.Control type="text" value={readnewdata.id} />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" value={readnewdata.name} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>email</Form.Label>
+          <Form.Control type="text" value={readnewdata.email} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>course</Form.Label>
+          <Form.Control type="text" value={readnewdata.course}/>
+        </Form.Group>
+
+       
+      </Form>
+
         </Modal.Body>
 
         <Modal.Footer>
 
 
-          <Button variant="secondary" onClick={() => navigate('-1')}>Cancel</Button>
+          <Button variant="secondary" onClick={() =>{
 
-          <Link to={`/deleteconfirm/${id}`}>
-            <Button variant="primary">Delete</Button>
-          </Link>
+            navigate('-1')
+            setTableHide(true)
+
+          }
+          } 
+           style={{padding:"8px",textAlign:"center",color:"black",fontSize:"13px",borderRadius:"15px",color:"black",border:"1px solid black",marginRight:"5px",marginLeft:"10px"}}>Cancel</Button>
+
+         
+            <Button variant="primary" onClick={()=>confirmDelete(id)} style={{padding:"8px",textAlign:"center",color:"black",fontSize:"13px",borderRadius:"15px",color:"black",border:"1px solid black",marginRight:"5px",marginLeft:"10px"}}>Delete</Button>
+          
 
         </Modal.Footer>
       </Modal.Dialog>
+    </div>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React,{useContext, useState} from 'react'
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { dataAddContext, dataContext } from '../App';
+import "../Table/table.css"
 
 const AddNewRecord = () => {
     const[addData,setAddData]=useContext(dataAddContext)
@@ -26,8 +27,9 @@ const AddNewRecord = () => {
     
   }
   return (
-    <div>
-        <h4 style={{fontsize:"10px",textAlign:"center",marginTop:"10px",color:"brown"}}>Enter Details to Add New Record</h4>
+    <>
+        <h4 style={{fontsize:"10px",textAlign:"center",marginTop:"30px",color:"brown"}}>Enter Details to Add New Record</h4>
+    <div className='formContainer'>
       <Form>
        <Form.Group className="mb-3" controlId="formBasicId">
           <Form.Label>ID</Form.Label>
@@ -76,6 +78,7 @@ const AddNewRecord = () => {
       
      </Form>
     </div> 
+    </>
    
   )
 }

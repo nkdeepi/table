@@ -13,21 +13,27 @@ import DeleteData from './TableData/DeleteData';
 import DeleteConfirm from './TableData/DeleteConfirm';
 const dataAddContext=createContext();
 const dataContext=createContext();
+const tableHideContext=createContext();
 
 
 function App() {
   const[addData,setAddData]=useState([""])
   const[initialData,setInitialData]=useState(data)
+  const [tableHide,setTableHide]=useState(true)
 
   return (
     
     <div className="App">
-      <dataAddContext.Provider value={[addData,setAddData]}>
+<tableHideContext.Provider value={[tableHide,setTableHide]}>
+<dataAddContext.Provider value={[addData,setAddData]}>
         <dataContext.Provider value={[initialData,setInitialData]}>
 
 
     <BrowserRouter>
+    { tableHide &&
+
 <Homepage/>
+    }
 <Routes>
   <Route path='/addrecord' element={<AddNewRecord/>}></Route>
   <Route path='/readdata/:id' element={<ReadData/>}></Route>
@@ -44,9 +50,12 @@ function App() {
 
     
    
+
+</tableHideContext.Provider>
+     
      </div>
   );
 }
 
 export default App;
-export {dataAddContext,dataContext}
+export {dataAddContext,dataContext,tableHideContext}
